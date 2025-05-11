@@ -52,6 +52,19 @@
     gap: 0.8rem;
   }
   
+  .logout-btn {
+    background: none;
+    border: none;
+    color: #FAFAFA;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .logout-btn:hover {
+    transform: scale(1.1);
+  }
+  
   .header-actions i {
     color: #FAFAFA;
     font-size: 1.2rem;
@@ -689,4 +702,38 @@
     background: #FFFFFF;
     border-radius: 50%;
     box-shadow: 0 0 5px #FFFFFF;
+  }
+  
+  .edit-profile-form {
+    background: #2A2A2A;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .edit-profile-form h2 {
+    color: #FAFAFA;
+    margin-bottom: 1rem;
+  }
+  
+  .edit-profile-form input, .edit-profile-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: #FAFAFA;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .edit-profile-form textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .edit-profile-form.hidden {
+    display: none;
   }

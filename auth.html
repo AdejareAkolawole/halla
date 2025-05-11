@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halla Authentication</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="auth.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="auth-container" id="authContainer">
+    <div class="auth-form">
+      <h2 id="authTitle">Sign Up</h2>
+      <input type="text" id="usernameInput" placeholder="Username">
+      <input type="email" id="emailInput" placeholder="Email">
+      <input type="password" id="passwordInput" placeholder="Password">
+      <button id="authButton">Sign Up</button>
+      <button id="googleLogin" class="social-login"><i class="fa fa-google"></i> Login with Google</button>
+      <p id="authSwitch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+      <p><a href="#" id="forgotPassword">Forgot Password?</a></p>
+    </div>
+    <div class="reset-form hidden">
+      <h2>Reset Password</h2>
+      <input type="email" id="resetEmailInput" placeholder="Enter your email">
+      <button id="resetPasswordButton">Send Reset Link</button>
+      <p><a href="#" id="backToAuth">Back to Login</a></p>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>
