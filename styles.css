@@ -86,24 +86,10 @@ nav .nav-cta:hover {
   align-items: center;
   text-align: center;
   padding: 2rem 3rem;
+  background: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+  color: #FAFAFA;
   position: relative;
   overflow: hidden;
-  background: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-}
-
-.parallax-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://www.transparenttextures.com/patterns/adire.png');
-  background-size: 200px 200px;
-  background-repeat: repeat;
-  opacity: 0.3;
-  mix-blend-mode: overlay;
-  z-index: 1;
-  transform: scale(1.1);
 }
 
 .hero::before {
@@ -114,7 +100,7 @@ nav .nav-cta:hover {
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, rgba(33, 33, 33, 0.4) 0%, rgba(33, 33, 33, 0.8) 100%);
-  z-index: 2;
+  z-index: 1;
 }
 
 .bubble-animation {
@@ -123,7 +109,7 @@ nav .nav-cta:hover {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 2;
 }
 
 .bubble-animation::before,
@@ -154,23 +140,21 @@ nav .nav-cta:hover {
 
 .hero-content {
   position: relative;
-  z-index: 4;
+  z-index: 3;
+  max-width: 900px;
 }
 
 .hero h1 {
   font-size: 4.5rem;
   font-weight: 900;
   margin-bottom: 1.5rem;
-  color: #FAFAFA;
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  max-width: 900px;
 }
 
 .hero p {
   font-size: 1.6rem;
   font-weight: 400;
-  margin-bottom: 2.5rem;
-  color: #FAFAFA;
+  margin: 0 auto 2.5rem;
   max-width: 700px;
 }
 
