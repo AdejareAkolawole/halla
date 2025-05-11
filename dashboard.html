@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halla Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <h1>Halla</h1>
+      <div class="online-dot"></div>
+    </div>
+    <div class="header-actions">
+      <i class="fas fa-search" id="searchIcon"></i>
+      <i class="fas fa-bell" id="notificationIcon"></i>
+      <i class="fas fa-cog" id="settingsIcon"></i>
+    </div>
+  </header>
+
+  <div class="search-bar hidden">
+    <i class="fas fa-arrow-left" id="backFromSearch"></i>
+    <input type="text" id="searchInput" placeholder="Search chats or tags...">
+    <i class="fas fa-microphone" id="voiceSearch"></i>
+  </div>
+
+  <div class="tab-container">
+    <div class="tab-nav">
+      <button class="tab-button active" data-tab="halla"><i class="fas fa-comments"></i> Chats</button>
+      <button class="tab-button" data-tab="storz"><i class="fas fa-store"></i> Storz</button>
+      <button class="tab-button" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+    </div>
+
+    <div class="tab-content active" id="halla">
+      <div class="chat-list" id="chatList">
+        <div class="chat-item" data-username="@Tunde">
+          <div class="chat-avatar">
+            <i class="fas fa-user-circle"></i>
+            <div class="status-dot online"></div>
+          </div>
+          <div class="chat-info">
+            <h3>@Tunde</h3>
+            <p>Hey, let's meet up later! 🔥</p>
+          </div>
+          <div class="chat-meta">
+            <span class="time">10:30 AM</span>
+            <span class="unread-badge">2</span>
+          </div>
+        </div>
+        <div class="chat-item" data-username="@Aisha">
+          <div class="chat-avatar">
+            <i class="fas fa-user-circle"></i>
+            <div class="status-dot offline"></div>
+          </div>
+          <div class="chat-info">
+            <h3>@Aisha</h3>
+            <p>Thanks for the payment! 💸</p>
+          </div>
+          <div class="chat-meta">
+            <span class="time">Yesterday</span>
+          </div>
+        </div>
+        <div class="chat-item" data-username="@Emeka">
+          <div class="chat-avatar">
+            <i class="fas fa-user-circle"></i>
+            <div class="status-dot online"></div>
+          </div>
+          <div class="chat-info">
+            <h3>@Emeka</h3>
+            <p>Check out this task I posted. 📋</p>
+          </div>
+          <div class="chat-meta">
+            <span class="time">Monday</span>
+            <span class="unread-badge">1</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-window hidden" id="chatWindow">
+        <div class="chat-header">
+          <i class="fas fa-arrow-left" id="backFromChat"></i>
+          <div class="chat-header-info">
+            <div class="chat-header-avatar">
+              <i class="fas fa-user-circle"></i>
+              <div class="status-dot online"></div>
+            </div>
+            <div>
+              <h3 id="chatUsername"></h3>
+              <p class="last-seen">Last seen recently</p>
+            </div>
+          </div>
+          <div class="chat-header-actions">
+            <i class="fas fa-phone" id="callIcon"></i>
+            <i class="fas fa-video" id="videoIcon"></i>
+            <i class="fas fa-ellipsis-v" id="chatMenu"></i>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+          <i class="fas fa-paperclip" id="attachIcon"></i>
+          <input type="text" id="messageInput" placeholder="Type a message...">
+          <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <button class="floating-btn" id="new-dm-btn"><i class="fas fa-plus"></i></button>
+    </div>
+
+    <div class="tab-content" id="storz">
+      <div class="storz-subtabs">
+        <button class="subtab-button active" data-subtab="tasker">Tasker</button>
+        <button class="subtab-button" data-subtab="p2p-trade">P2P Trade</button>
+        <button class="subtab-button" data-subtab="wallet">Wallet</button>
+      </div>
+      <div class="subtab-content active" id="tasker">
+        <div class="task-item">
+          <h3>Design a Logo 🎨</h3>
+          <p>Need a logo for my startup in Lagos. Budget: ₦15,000.</p>
+          <span class="task-meta">Posted by @Kemi • 2h ago</span>
+        </div>
+      </div>
+      <div class="subtab-content" id="p2p-trade">
+        <div class="trade-item">
+          <h3>Sneakers for Sale 👟</h3>
+          <p>Size 42, barely used. Location: Port Harcourt. ₦20,000.</p>
+          <span class="trade-meta">Posted by @Chidi • 1d ago</span>
+        </div>
+      </div>
+      <div class="subtab-content" id="wallet">
+        <div class="wallet-balance">
+          <h3>Halla Pay Balance 💰</h3>
+          <p id="walletBalance">₦45,000</p>
+        </div>
+        <div class="transaction-item">
+          <p>Sent to @Aisha</p>
+          <span>-₦10,000 • Yesterday</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="profile">
+      <div class="profile-header">
+        <div class="avatar-container">
+          <div class="avatar"><i class="fas fa-user-circle"></i></div>
+          <div class="status-dot online"></div>
+        </div>
+        <h2 id="profileUsername">@Username</h2>
+        <p class="status">Online</p>
+        <p class="bio">Lagos-based entrepreneur. Always up for a chat! 🌟</p>
+      </div>
+      <div class="profile-actions">
+        <a href="#" class="action-btn"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#" class="action-btn"><i class="fas fa-store-alt"></i> Manage Store</a>
+        <a href="#" class="action-btn"><i class="fas fa-bookmark"></i> Saved Posts</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-tab="halla"><i class="fas fa-comments"></i></button>
+    <button class="nav-item" data-tab="storz"><i class="fas fa-store"></i></button>
+    <button class="nav-item" data-tab="profile"><i class="fas fa-user"></i></button>
+  </nav>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
