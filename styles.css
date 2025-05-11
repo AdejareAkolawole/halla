@@ -1,0 +1,740 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #FAFAFA;
+  color: #212121;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #E53935 0%, #212121 80%);
+  padding: 1.5rem 3rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+header:hover {
+  background: linear-gradient(135deg, #c62828 0%, #212121 80%);
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.1);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: #FAFAFA;
+  text-decoration: none;
+  margin-left: 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #E53935;
+  transform: translateY(-2px);
+}
+
+nav .nav-cta {
+  background: linear-gradient(90deg, #E53935, #c62828);
+  padding: 0.7rem 2.5rem;
+  border-radius: 30px;
+  font-weight: 700;
+  box-shadow: 0 3px 12px rgba(229, 57, 53, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav .nav-cta:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.7);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 3rem;
+  position: relative;
+  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/adire.png');
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  z-index: 1;
+  transform: scale(1.1);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(33, 33, 33, 0.4) 0%, rgba(33, 33, 33, 0.8) 100%);
+  z-index: 2;
+}
+
+.bubble-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.bubble-animation::before,
+.bubble-animation::after {
+  content: '💬';
+  position: absolute;
+  color: rgba(229, 57, 53, 0.3);
+  font-size: 3rem;
+  animation: float 6s infinite ease-in-out;
+}
+
+.bubble-animation::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.bubble-animation::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-50px); opacity: 0.6; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: #FAFAFA;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  max-width: 900px;
+}
+
+.hero p {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  color: #FAFAFA;
+  max-width: 700px;
+}
+
+.cta {
+  background: linear-gradient(90deg, #E53935, #c62828);
+  color: #FAFAFA;
+  padding: 1.2rem 3.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(229, 57, 53, 0.6);
+}
+
+/* Features Section */
+.features {
+  padding: 6rem 3rem;
+  background: linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.features h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #212121;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.features h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: #E53935;
+  border-radius: 3px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.feature-card {
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(229, 57, 53, 0.15);
+  position: relative;
+  text-align: center;
+}
+
+.feature-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: #E53935;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #E53935;
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.3);
+}
+
+.feature-card:hover .icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.feature-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #E53935;
+  margin-bottom: 0.8rem;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #212121;
+  line-height: 1.5;
+}
+
+/* Storz Section */
+.storz {
+  padding: 6rem 3rem;
+  background: linear-gradient(135deg, #212121 0%, #333333 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.storz::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.storz h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #FAFAFA;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.storz h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: #E53935;
+  border-radius: 3px;
+}
+
+.storz p {
+  font-size: 1.3rem;
+  color: #FAFAFA;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+.storz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.storz-card {
+  background: #2d2d2d;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(229, 57, 53, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.storz-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: #E53935;
+  transition: transform 0.3s ease;
+}
+
+.storz-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  border-color: #E53935;
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.3);
+}
+
+.storz-card:hover .icon {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.storz-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #E53935;
+  margin-bottom: 0.8rem;
+}
+
+.storz-card p {
+  font-size: 1rem;
+  color: #FAFAFA;
+  line-height: 1.5;
+}
+
+/* Demo Section */
+.demo {
+  padding: 6rem 3rem;
+  background: #FAFAFA;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.demo h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #212121;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.demo h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: #E53935;
+  border-radius: 3px;
+}
+
+.demo p {
+  font-size: 1.4rem;
+  color: #212121;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+.demo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.demo-container iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+/* Testimonials Section */
+.testimonials {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #212121;
+  margin-bottom: 2rem;
+}
+
+.swiper-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.swiper-slide {
+  background: #FFFFFF;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.swiper-slide p {
+  font-size: 1.2rem;
+  color: #212121;
+  margin-bottom: 1rem;
+}
+
+.swiper-slide h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #E53935;
+}
+
+.swiper-pagination-bullet {
+  background: #E53935;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 6rem 3rem;
+  background: linear-gradient(135deg, #E53935 0%, #212121 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.cta-section h2 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #FAFAFA;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: #FAFAFA;
+  border-radius: 3px;
+}
+
+.cta-section p {
+  font-size: 1.4rem;
+  color: #FAFAFA;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.cta.pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.countdown {
+  font-size: 1.2rem;
+  color: #FAFAFA;
+  margin-left: 1.5rem;
+}
+
+#timer {
+  font-weight: 700;
+  color: #E53935;
+}
+
+.download-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  z-index: 2;
+}
+
+.download-btn {
+  background: #FAFAFA;
+  color: #212121;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.download-btn i {
+  font-size: 1.5rem;
+}
+
+.download-btn:hover {
+  background: #E53935;
+  color: #FAFAFA;
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(229, 57, 53, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+}
+
+/* Footer */
+footer {
+  padding: 4rem 3rem;
+  background: #212121;
+  text-align: center;
+  position: relative;
+  background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-color: #212121;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #E53935, #c62828);
+  z-index: 1;
+}
+
+footer p {
+  font-size: 1.1rem;
+  color: #FAFAFA;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: #E53935;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #c62828;
+  transform: scale(1.2);
+}
+
+/* Animations with GSAP */
+.feature-card, .storz-card, .hero h1, .hero p {
+  opacity: 0;
+}
+
+.loaded .feature-card, .loaded .storz-card, .loaded .hero h1, .loaded .hero p {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .feature-grid, .storz-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 5rem;
+  }
+
+  .hero p {
+    font-size: 1.8rem;
+  }
+
+  .features h2, .storz h2, .demo h2 {
+    font-size: 3.8rem;
+  }
+
+  .cta-section h2 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .cta {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .features h2, .storz h2, .demo h2 {
+    font-size: 2.5rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2.2rem;
+  }
+
+  header .logo img {
+    height: 30px;
+  }
+
+  nav a {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  nav .nav-cta {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+  }
+}
