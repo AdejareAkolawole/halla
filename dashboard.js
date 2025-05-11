@@ -55,6 +55,7 @@ document.querySelectorAll('.tab-button, .nav-item').forEach(button => {
     item.addEventListener('click', () => {
       currentChat = item.getAttribute('data-username');
       document.getElementById('chatUsername').textContent = currentChat;
+      document.getElementById('chatWindow').classList.remove('hidden');
       document.getElementById('chatWindow').classList.add('active');
       document.getElementById('chatMessages').innerHTML = `
         <div class="chat-message received">Hi there! What's up? 😊</div>
@@ -65,10 +66,10 @@ document.querySelectorAll('.tab-button, .nav-item').forEach(button => {
   });
   
   document.getElementById('backFromChat').addEventListener('click', () => {
-    document.getElementById('chatWindow').classList.remove('active');
-    currentChat = null;
     gsap.to('#chatWindow', { opacity: 0, x: '100%', duration: 0.3, ease: 'power2.out', onComplete: () => {
+      document.getElementById('chatWindow').classList.remove('active');
       document.getElementById('chatWindow').classList.add('hidden');
+      currentChat = null;
     }});
   });
   
@@ -100,7 +101,7 @@ document.querySelectorAll('.tab-button, .nav-item').forEach(button => {
       newChat.setAttribute('data-username', `@${username}`);
       newChat.innerHTML = `
         <div class="chat-avatar">
-          <i class="fas fa-user-circle"></i>
+          <i class="fa fa-user-circle"></i>
           <div class="status-dot online"></div>
         </div>
         <div class="chat-info">

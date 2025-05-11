@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Halla Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 <body>
@@ -15,30 +15,30 @@
       <div class="online-dot"></div>
     </div>
     <div class="header-actions">
-      <i class="fas fa-search" id="searchIcon"></i>
-      <i class="fas fa-bell" id="notificationIcon"></i>
-      <i class="fas fa-cog" id="settingsIcon"></i>
+      <i class="fa fa-search" id="searchIcon"></i>
+      <i class="fa fa-bell" id="notificationIcon"></i>
+      <i class="fa fa-cog" id="settingsIcon"></i>
     </div>
   </header>
 
   <div class="search-bar hidden">
-    <i class="fas fa-arrow-left" id="backFromSearch"></i>
+    <i class="fa fa-arrow-left" id="backFromSearch"></i>
     <input type="text" id="searchInput" placeholder="Search chats or tags...">
-    <i class="fas fa-microphone" id="voiceSearch"></i>
+    <i class="fa fa-microphone" id="voiceSearch"></i>
   </div>
 
   <div class="tab-container">
     <div class="tab-nav">
-      <button class="tab-button active" data-tab="halla"><i class="fas fa-comments"></i></button>
-      <button class="tab-button" data-tab="storz"><i class="fas fa-store"></i></button>
-      <button class="tab-button" data-tab="profile"><i class="fas fa-user"></i></button>
+      <button class="tab-button active" data-tab="halla"><i class="fa fa-comments"></i></button>
+      <button class="tab-button" data-tab="storz"><i class="fa fa-shopping-bag"></i></button>
+      <button class="tab-button" data-tab="profile"><i class="fa fa-user"></i></button>
     </div>
 
     <div class="tab-content active" id="halla">
       <div class="chat-list" id="chatList">
         <div class="chat-item" data-username="@Tunde">
           <div class="chat-avatar">
-            <i class="fas fa-user-circle"></i>
+            <i class="fa fa-user-circle"></i>
             <div class="status-dot online"></div>
           </div>
           <div class="chat-info">
@@ -52,7 +52,7 @@
         </div>
         <div class="chat-item" data-username="@Aisha">
           <div class="chat-avatar">
-            <i class="fas fa-user-circle"></i>
+            <i class="fa fa-user-circle"></i>
             <div class="status-dot offline"></div>
           </div>
           <div class="chat-info">
@@ -65,7 +65,7 @@
         </div>
         <div class="chat-item" data-username="@Emeka">
           <div class="chat-avatar">
-            <i class="fas fa-user-circle"></i>
+            <i class="fa fa-user-circle"></i>
             <div class="status-dot online"></div>
           </div>
           <div class="chat-info">
@@ -80,10 +80,10 @@
       </div>
       <div class="chat-window hidden" id="chatWindow">
         <div class="chat-header">
-          <i class="fas fa-arrow-left" id="backFromChat"></i>
+          <button class="back-btn" id="backFromChat"><i class="fa fa-arrow-left"></i></button>
           <div class="chat-header-info">
             <div class="chat-header-avatar">
-              <i class="fas fa-user-circle"></i>
+              <i class="fa fa-user-circle"></i>
               <div class="status-dot online"></div>
             </div>
             <div>
@@ -92,26 +92,26 @@
             </div>
           </div>
           <div class="chat-header-actions">
-            <i class="fas fa-phone" id="callIcon"></i>
-            <i class="fas fa-video" id="videoIcon"></i>
-            <i class="fas fa-ellipsis-v" id="chatMenu"></i>
+            <i class="fa fa-phone" id="callIcon"></i>
+            <i class="fa fa-video-camera" id="videoIcon"></i>
+            <i class="fa fa-ellipsis-v" id="chatMenu"></i>
           </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input">
-          <i class="fas fa-paperclip" id="attachIcon"></i>
+          <i class="fa fa-paperclip" id="attachIcon"></i>
           <input type="text" id="messageInput" placeholder="Type a message...">
-          <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+          <button id="sendMessage"><i class="fa fa-paper-plane"></i></button>
         </div>
       </div>
-      <button class="floating-btn" id="new-dm-btn"><i class="fas fa-plus"></i></button>
+      <button class="floating-btn" id="new-dm-btn"><i class="fa fa-plus"></i></button>
     </div>
 
     <div class="tab-content" id="storz">
       <div class="storz-subtabs">
-        <button class="subtab-button active" data-subtab="tasker"><i class="fas fa-tasks"></i></button>
-        <button class="subtab-button" data-subtab="p2p-trade"><i class="fas fa-exchange-alt"></i></button>
-        <button class="subtab-button" data-subtab="wallet"><i class="fas fa-wallet"></i></button>
+        <button class="subtab-button active" data-subtab="tasker"><i class="fa fa-tasks"></i></button>
+        <button class="subtab-button" data-subtab="p2p-trade"><i class="fa fa-exchange"></i></button>
+        <button class="subtab-button" data-subtab="wallet"><i class="fa fa-credit-card"></i></button>
       </div>
       <div class="subtab-content active" id="tasker">
         <div class="task-item">
@@ -142,7 +142,7 @@
     <div class="tab-content" id="profile">
       <div class="profile-header">
         <div class="avatar-container">
-          <div class="avatar"><i class="fas fa-user-circle"></i></div>
+          <div class="avatar"><i class="fa fa-user-circle"></i></div>
           <div class="status-dot online"></div>
         </div>
         <h2 id="profileUsername">@Username</h2>
@@ -150,17 +150,17 @@
         <p class="bio">Lagos-based entrepreneur. Always up for a chat! 🌟</p>
       </div>
       <div class="profile-actions">
-        <a href="#" class="action-btn"><i class="fas fa-cog"></i></a>
-        <a href="#" class="action-btn"><i class="fas fa-store-alt"></i></a>
-        <a href="#" class="action-btn"><i class="fas fa-bookmark"></i></a>
+        <a href="#" class="action-btn"><i class="fa fa-cog"></i></a>
+        <a href="#" class="action-btn"><i class="fa fa-shopping-bag"></i></a>
+        <a href="#" class="action-btn"><i class="fa fa-bookmark"></i></a>
       </div>
     </div>
   </div>
 
   <nav class="bottom-nav">
-    <button class="nav-item active" data-tab="halla"><i class="fas fa-comments"></i></button>
-    <button class="nav-item" data-tab="storz"><i class="fas fa-store"></i></button>
-    <button class="nav-item" data-tab="profile"><i class="fas fa-user"></i></button>
+    <button class="nav-item active" data-tab="halla"><i class="fa fa-comments"></i></button>
+    <button class="nav-item" data-tab="storz"><i class="fa fa-shopping-bag"></i></button>
+    <button class="nav-item" data-tab="profile"><i class="fa fa-user"></i></button>
   </nav>
 
   <script src="dashboard.js"></script>

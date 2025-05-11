@@ -6,8 +6,8 @@
   }
   
   body {
-    background: #FAFAFA;
-    color: #212121;
+    background: #212121;
+    color: #FAFAFA;
     overflow-x: hidden;
     touch-action: manipulation;
   }
@@ -19,8 +19,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
   }
@@ -66,10 +68,12 @@
   
   /* Search Bar */
   .search-bar {
-    background: #FAFAFA;
+    background: #212121;
     padding: 0.5rem 1rem;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -81,7 +85,7 @@
   }
   
   .search-bar i {
-    color: #212121;
+    color: #E53935;
     font-size: 1.2rem;
     cursor: pointer;
     margin: 0 0.5rem;
@@ -92,22 +96,24 @@
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 20px;
-    background: #E0E0E0;
+    background: #333;
     font-size: 1rem;
-    color: #212121;
+    color: #FAFAFA;
     outline: none;
   }
   
   /* Tab Navigation */
   .tab-nav {
     display: flex;
-    background: linear-gradient(90deg, #FAFAFA, #F5F5F5);
-    position: sticky;
+    background: #2A2A2A;
+    position: fixed;
     top: 56px;
+    left: 0;
+    width: 100%;
     z-index: 998;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #E0E0E0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #444;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .tab-button {
@@ -115,8 +121,7 @@
     padding: 0.5rem;
     background: none;
     border: none;
-    color: #757575;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -124,14 +129,16 @@
     transition: color 0.3s, transform 0.2s;
   }
   
-  .tab-button:hover {
+  .tab-button i {
     color: #E53935;
+  }
+  
+  .tab-button:hover {
     transform: scale(1.1);
   }
   
-  .tab-button.active {
-    color: #E53935;
-    position: relative;
+  .tab-button.active i {
+    color: #FAFAFA;
   }
   
   .tab-button.active::after {
@@ -142,12 +149,17 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background: #E53935;
+    background: #FAFAFA;
     border-radius: 50%;
-    box-shadow: 0 0 5px #E53935;
+    box-shadow: 0 0 5px #FAFAFA;
   }
   
   /* Tab Content */
+  .tab-container {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  
   .tab-content {
     display: none;
     padding: 0.5rem;
@@ -168,13 +180,13 @@
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #444;
     cursor: pointer;
     transition: background 0.2s;
   }
   
   .chat-item:hover {
-    background: #F5F5F5;
+    background: #333;
   }
   
   .chat-avatar {
@@ -185,9 +197,6 @@
   .chat-avatar i {
     font-size: 2.2rem;
     color: #E53935;
-    background: linear-gradient(135deg, #E53935, #C62828);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   
   .status-dot {
@@ -197,7 +206,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: 2px solid #FAFAFA;
+    border: 2px solid #212121;
   }
   
   .status-dot.online {
@@ -215,13 +224,13 @@
   
   .chat-info h3 {
     font-size: 1rem;
-    color: #212121;
+    color: #FAFAFA;
     font-weight: 500;
   }
   
   .chat-info p {
     font-size: 0.85rem;
-    color: #757575;
+    color: #B0BEC5;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -237,7 +246,7 @@
   
   .chat-meta .time {
     font-size: 0.7rem;
-    color: #757575;
+    color: #B0BEC5;
   }
   
   .chat-meta .unread-badge {
@@ -257,16 +266,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #FAFAFA;
-    display: flex;
+    background: #212121;
+    display: none;
     flex-direction: column;
-    z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    z-index: 2000;
   }
   
   .chat-window.active {
-    transform: translateX(0);
+    display: flex;
   }
   
   .chat-header {
@@ -278,14 +285,20 @@
     box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
   }
   
-  .chat-header i {
-    color: #FAFAFA;
-    font-size: 1.2rem;
+  .back-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
     cursor: pointer;
+  }
+  
+  .back-btn i {
+    color: #FAFAFA;
+    font-size: 1.5rem;
     transition: transform 0.2s;
   }
   
-  .chat-header i:hover {
+  .back-btn:hover i {
     transform: scale(1.1);
   }
   
@@ -345,7 +358,7 @@
     overflow-y: auto;
     padding: 1rem;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><circle cx="50" cy="50" r="50" fill="#E53935"/></svg>') repeat;
-    background-color: #F5F5F5;
+    background-color: #2A2A2A;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -356,7 +369,7 @@
     border-radius: 15px;
     max-width: 70%;
     font-size: 0.9rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
   
   .sent {
@@ -367,8 +380,8 @@
   }
   
   .received {
-    background: #FFFFFF;
-    color: #212121;
+    background: #333;
+    color: #FAFAFA;
     align-self: flex-start;
     border-top-left-radius: 0;
   }
@@ -376,13 +389,13 @@
   .chat-input {
     display: flex;
     padding: 0.5rem;
-    background: #FAFAFA;
-    border-top: 1px solid #E0E0E0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background: #212121;
+    border-top: 1px solid #444;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .chat-input i {
-    color: #757575;
+    color: #E53935;
     font-size: 1.2rem;
     cursor: pointer;
     padding: 0.4rem;
@@ -390,7 +403,7 @@
   }
   
   .chat-input i:hover {
-    color: #E53935;
+    color: #C62828;
     transform: scale(1.1);
   }
   
@@ -399,8 +412,9 @@
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 20px;
-    background: #E0E0E0;
+    background: #333;
     font-size: 1rem;
+    color: #FAFAFA;
     outline: none;
   }
   
@@ -413,6 +427,10 @@
     margin-left: 0.5rem;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .chat-input button i {
+    color: #FAFAFA;
   }
   
   .chat-input button:hover {
@@ -440,6 +458,10 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   
+  .floating-btn i {
+    color: #FAFAFA;
+  }
+  
   .floating-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(229, 57, 53, 0.5);
@@ -450,31 +472,37 @@
     display: flex;
     gap: 0.5rem;
     padding: 0.5rem;
-    background: #FAFAFA;
-    border-bottom: 1px solid #E0E0E0;
+    background: #2A2A2A;
+    border-bottom: 1px solid #444;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .subtab-button {
     flex: 1;
     padding: 0.5rem;
-    background: #E0E0E0;
-    color: #757575;
+    background: #333;
     border: none;
     border-radius: 15px;
     font-size: 1.3rem;
     cursor: pointer;
-    transition: background 0.3s, color 0.3s, transform 0.2s;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .subtab-button i {
+    color: #E53935;
   }
   
   .subtab-button:hover {
-    background: #D5D5D5;
+    background: #444;
     transform: scale(1.05);
   }
   
   .subtab-button.active {
     background: linear-gradient(135deg, #E53935, #C62828);
+  }
+  
+  .subtab-button.active i {
     color: #FAFAFA;
   }
   
@@ -489,24 +517,24 @@
   
   .task-item, .trade-item, .transaction-item {
     padding: 1rem;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #444;
     transition: background 0.2s;
     border-radius: 10px;
   }
   
   .task-item:hover, .trade-item:hover, .transaction-item:hover {
-    background: #F5F5F5;
+    background: #333;
   }
   
   .task-item h3, .trade-item h3 {
     font-size: 1.1rem;
-    color: #212121;
+    color: #FAFAFA;
     font-weight: 500;
   }
   
   .task-item p, .trade-item p, .transaction-item p {
     font-size: 0.9rem;
-    color: #757575;
+    color: #B0BEC5;
   }
   
   .task-meta, .trade-meta {
@@ -519,15 +547,15 @@
   .wallet-balance {
     text-align: center;
     padding: 1rem;
-    border-bottom: 1px solid #E0E0E0;
+    border-bottom: 1px solid #444;
     border-radius: 10px;
-    background: linear-gradient(135deg, #FFFFFF, #F5F5F5);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: #2A2A2A;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .wallet-balance h3 {
     font-size: 1.2rem;
-    color: #212121;
+    color: #FAFAFA;
   }
   
   .wallet-balance p {
@@ -540,11 +568,11 @@
   .profile-header {
     text-align: center;
     padding: 1.5rem;
-    border-bottom: 1px solid #E0E0E0;
-    background: linear-gradient(135deg, #FFFFFF, #F5F5F5);
+    border-bottom: 1px solid #444;
+    background: #2A2A2A;
     border-radius: 10px;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
   
   .avatar-container {
@@ -555,9 +583,6 @@
   .avatar {
     font-size: 4rem;
     color: #E53935;
-    background: linear-gradient(135deg, #E53935, #C62828);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
   }
   
@@ -570,7 +595,7 @@
   
   .profile-header h2 {
     font-size: 1.5rem;
-    color: #212121;
+    color: #FAFAFA;
     font-weight: 600;
   }
   
@@ -583,7 +608,7 @@
   
   .bio {
     font-size: 0.9rem;
-    color: #757575;
+    color: #B0BEC5;
   }
   
   .profile-actions {
@@ -607,19 +632,21 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   
+  .action-btn i {
+    font-size: 1.2rem;
+    color: #FAFAFA;
+  }
+  
   .action-btn:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
-  }
-  
-  .action-btn i {
-    font-size: 1.2rem;
   }
   
   /* Bottom Navigation */
   .bottom-nav {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background: linear-gradient(135deg, #E53935, #C62828);
     display: flex;
@@ -633,20 +660,22 @@
   .nav-item {
     background: none;
     border: none;
-    color: #FAFAFA;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     padding: 0.5rem;
     cursor: pointer;
-    transition: color 0.3s, transform 0.2s;
+    transition: transform 0.2s;
+  }
+  
+  .nav-item i {
+    color: #FAFAFA;
   }
   
   .nav-item:hover {
     transform: scale(1.1);
   }
   
-  .nav-item.active {
+  .nav-item.active i {
     color: #FFFFFF;
-    position: relative;
   }
   
   .nav-item.active::after {
@@ -660,44 +689,4 @@
     background: #FFFFFF;
     border-radius: 50%;
     box-shadow: 0 0 5px #FFFFFF;
-  }
-  
-  /* Mobile Optimization */
-  @media (max-width: 767px) {
-    .header {
-      padding: 0.8rem;
-    }
-  
-    .chat-list, .storz-subtabs, .profile-actions {
-      padding: 0;
-    }
-  
-    .chat-item {
-      padding: 0.75rem;
-    }
-  
-    .chat-info p {
-      max-width: 150px;
-    }
-  
-    .chat-window {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-    }
-  
-    .profile-actions {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .chat-window {
-      max-width: 400px;
-      margin: 0 auto;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
   }
