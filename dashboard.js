@@ -60,14 +60,14 @@ document.querySelectorAll('.tab-button, .nav-item').forEach(button => {
         <div class="chat-message received">Hi there! What's up? 😊</div>
         <div class="chat-message sent">Hello! Just checking in. 🔥</div>
       `;
-      gsap.from('#chatWindow', { opacity: 0, x: 50, duration: 0.3, ease: 'power2.out' });
+      gsap.from('#chatWindow', { opacity: 0, x: '100%', duration: 0.3, ease: 'power2.out' });
     });
   });
   
   document.getElementById('backFromChat').addEventListener('click', () => {
     document.getElementById('chatWindow').classList.remove('active');
     currentChat = null;
-    gsap.to('#chatWindow', { opacity: 0, x: 50, duration: 0.3, ease: 'power2.out', onComplete: () => {
+    gsap.to('#chatWindow', { opacity: 0, x: '100%', duration: 0.3, ease: 'power2.out', onComplete: () => {
       document.getElementById('chatWindow').classList.add('hidden');
     }});
   });
