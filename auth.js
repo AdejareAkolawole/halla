@@ -1,20 +1,15 @@
-// Initialize Supabase (Replace with your Supabase URL and Key)
-const { createClient } = Supabase;
-const supabaseClient = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_KEY');
-
 // DOM Elements
 const authContainer = document.getElementById('authContainer');
 const authTitle = document.getElementById('authTitle');
 const authButton = document.getElementById('authButton');
 const authSwitch = document.getElementById('authSwitch');
-const switchToLogin = document.getElementById('switchToLogin');
 const usernameInput = document.getElementById('usernameInput');
 const emailInput = document.getElementById('emailInput');
 const passwordInput = document.getElementById('passwordInput');
 const googleLogin = document.getElementById('googleLogin');
 const forgotPassword = document.getElementById('forgotPassword');
-const authForm = document.querySelector('.auth-form');
-const resetForm = document.querySelector('.reset-form');
+const authForm = document.getElementById('authForm');
+const resetForm = document.getElementById('resetForm');
 const resetEmailInput = document.getElementById('resetEmailInput');
 const resetPasswordButton = document.getElementById('resetPasswordButton');
 const backToAuth = document.getElementById('backToAuth');
@@ -23,27 +18,31 @@ const backToAuth = document.getElementById('backToAuth');
 let isSignup = true;
 
 // Check Session on Load
-document.addEventListener('DOMContentLoaded', async () => {
-  const { data: { session } } = await supabaseClient.auth.getSession();
-  if (session) {
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  if (user) {
+    console.log('Session found, redirecting to dashboard');
     window.location.href = 'dashboard.html';
   }
 });
 
-// Toggle Between Signup and Login
-switchToLogin.addEventListener('click', (e) => {
-  e.preventDefault();
-  isSignup = !isSignup;
-  authTitle.textContent = isSignup ? 'Sign Up' : 'Login';
-  authButton.textContent = isSignup ? 'Sign Up' : 'Login';
-  usernameInput.classList.toggle('hidden', !isSignup);
-  authSwitch.innerHTML = isSignup
-    ? 'Already have an account? <a href="#" id="switchToLogin">Login</a>'
-    : 'Need an account? <a href="#" id="switchToLogin">Sign Up</a>';
+// Toggle Between Signup and Login with Event Delegation
+authSwitch.addEventListener('click', (e) => {
+  if (e.target.id === 'switchToLogin') {
+    e.preventDefault();
+    isSignup = !isSignup;
+    authTitle.textContent = isSignup ? 'Sign Up' : 'Login';
+    authButton.textContent = isSignup ? 'Sign Up' : 'Login';
+    usernameInput.classList.toggle('hidden', !isSignup);
+    authSwitch.innerHTML = isSignup
+      ? 'Already have an account? <a href="#" id="switchToLogin">Login</a>'
+      : 'Need an account? <a href="#" id="switchToLogin">Sign Up</a>';
+  }
 });
 
 // Signup/Login Handler
-authButton.addEventListener('click', async () => {
+authForm.addEventListener('submit', (e) => {
+  e.preventDefault();
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
   const username = usernameInput.value.trim();
@@ -53,89 +52,62 @@ authButton.addEventListener('click', async () => {
     return;
   }
 
+  let users = JSON.parse(localStorage.getItem('users') || '[]');
+
   if (isSignup) {
-    const { data, error } = await supabaseClient.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: window.location.origin + '/auth.html',
-      },
-    });
-    if (error) {
-      alert('Signup failed: ' + error.message);
-    } else {
-      const { error: profileError } = await supabaseClient
-        .from('profiles')
-        .insert({ id: data.user.id, username, bio: 'Hey, I\'m new to Halla!' });
-      if (profileError) {
-        alert('Profile creation failed: ' + profileError.message);
-      } else {
-        alert('Signup successful! Check your email to confirm.');
-        isSignup = false;
-        authTitle.textContent = 'Login';
-        authButton.textContent = 'Login';
-        usernameInput.classList.add('hidden');
-        authSwitch.innerHTML = 'Need an account? <a href="#" id="switchToLogin">Sign Up</a>';
-      }
+    console.log('Attempting signup with:', { email, username });
+    if (users.find(u => u.email === email)) {
+      alert('Email already registered.');
+      return;
     }
+    const newUser = { email, password, username };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    console.log('Signup successful');
+    alert('Signup successful! Redirecting...');
+    window.location.href = 'dashboard.html';
   } else {
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-    if (error) {
-      alert('Login failed: ' + error.message);
-    } else {
+    console.log('Attempting login with:', { email });
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+      console.log('Login successful');
+      localStorage.setItem('currentUser', JSON.stringify(user));
       window.location.href = 'dashboard.html';
+    } else {
+      alert('Invalid email or password.');
     }
   }
 });
 
-// Google Login
-googleLogin.addEventListener('click', async () => {
-  const { data, error } = await supabaseClient.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.origin + '/dashboard.html',
-    },
-  });
-  if (error) {
-    alert('Google Login failed: ' + error.message);
-  }
+// Google Login (Mock)
+googleLogin.addEventListener('click', () => {
+  console.log('Initiating Google login (mock)');
+  alert('Google login not implemented in mock mode. Use email/password.');
 });
 
-// Forgot Password
+// Forgot Password (Mock)
 forgotPassword.addEventListener('click', (e) => {
   e.preventDefault();
-  authForm.classList.add('hidden');
-  resetForm.classList.remove('hidden');
+  authForm.parentElement.classList.add('hidden');
+  resetForm.parentElement.classList.remove('hidden');
 });
 
 backToAuth.addEventListener('click', (e) => {
   e.preventDefault();
-  resetForm.classList.add('hidden');
-  authForm.classList.remove('hidden');
+  resetForm.parentElement.classList.add('hidden');
+  authForm.parentElement.classList.remove('hidden');
 });
 
-resetPasswordButton.addEventListener('click', async () => {
+resetForm.addEventListener('submit', (e) => {
+  e.preventDefault();
   const email = resetEmailInput.value.trim();
   if (!email) {
     alert('Please enter your email.');
     return;
   }
-
-  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/auth.html',
-  });
-  if (error) {
-    alert('Password reset failed: ' + error.message);
-  } else {
-    alert('Password reset link sent! Check your email.');
-    resetForm.classList.add('hidden');
-    authForm.classList.remove('hidden');
-  }
-});
-
-// Handle Redirects
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' && session) {
-    window.location.href = 'dashboard.html';
-  }
+  console.log('Sending password reset email to:', email);
+  alert('Password reset link sent! (Mock) Check your email to reset.');
+  resetForm.parentElement.classList.add('hidden');
+  authForm.parentElement.classList.remove('hidden');
 });
